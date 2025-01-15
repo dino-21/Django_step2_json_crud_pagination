@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-3">
+    <h1>Melon List</h1>
+    <!-- 검색 폼 -->
+    <form method="get" action="{% url 'pybo2:json' %}" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="곡명 또는 가수를 검색하세요"
+                   value="{{ request.GET.search }}">
+            <button class="btn btn-primary" type="submit">검색</button>
+        </div>
+    </form>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>곡명</th>
+            <th>가수</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for song in song_list %}
+        <tr>
+            <td>{{ song.곡명 }}</td>
+            <td>{{ song.가수 }}</td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td colspan="2">검색 결과가 없습니다.</td>
+        </tr>
+
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+{% endblock %}
+
+
+
+
+
